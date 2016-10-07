@@ -11,6 +11,43 @@ var gutil = require('gulp-util');
 var rename = require('gulp-rename');
 var bower = require('gulp-bower');
 var ngAnnotate = require('gulp-ng-annotate');
+var http = require('http');
+var connect = require('connect');
+var serveStatic = require('serve-static');
+var selenium = require('selenium-standalone');
+var webdriver = require('gulp-webdriver');
+
+var httpServer;
+var seleniumServer;
+
+gulp.task('http', function(cb) {
+    var app = connect().use(serveStatic('dist'));
+    httpServer = http.createServer(app).listen(9000, cb);
+});
+
+gulp.task('selenium', function(cb) {
+   selenium.install({logger: console.log}, function() {
+       selenium.start(function(err, child) {
+            if (err) { return cb(err); }
+           seleniumServer = child;
+           cb();
+       });
+   });
+});
+
+gulp.task('e2e', ['http', 'selenium'], function() {
+  return gulp.src('wdio.conf.js')
+    .pipe(webdriver().on('error', function() {
+      seleniumServer.kill();
+      process.exit(1);
+  }));
+});
+
+gulp.task('test', ['e2e'], function() {
+  httpServer.close();
+  seleniumServer.kill();
+});
+
  
 gulp.task('bower', function() {
   return bower();
