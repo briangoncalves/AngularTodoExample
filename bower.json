@@ -1,0 +1,24 @@
+{
+  "name": "angular-todo-example",
+  "description": "Simple Angular Project based on AngularTodoMVC to demonstrate the usage of the framework",
+  "main": "gulpfile.js",
+  "authors": [
+    "Brian Goncalves <brian.goncalves@gft.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/briangoncalves/AngularTodoExample",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}
