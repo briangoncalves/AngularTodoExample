@@ -40,9 +40,10 @@
     "selenium-standalone": "^5.7.2",
     "serve-static": "^1.11.1",
     "uglify": "^0.1.5",
+    "wdio-allure-reporter": "^0.1.2",
+    "wdio-concise-reporter": "0.0.2",
     "wdio-dot-reporter": "0.0.6",
     "wdio-mocha-framework": "^0.4.3",
-    "wdio-phantomjs-service": "^0.1.0",
     "wdio-selenium-standalone-service": "0.0.7",
     "wdio-spec-reporter": "0.0.3",
     "webdriverio": "^4.2.16"

@@ -43,18 +43,17 @@ gulp.task('e2e', ['http', 'selenium'], function() {
   }));
 });
 
-gulp.task('test', ['e2e'], function() {
+gulp.task('runTest', ['e2e'], function() {
   httpServer.close();
   seleniumServer.kill();
 });
-
  
 gulp.task('bower', function() {
   return bower();
 });
 
 gulp.task('clean', function () {
-    return gulp.src('dist', {read: false})
+    return gulp.src(['dist', 'allure-results', 'allure-reports', 'errorShots'], {read: false})
         .pipe(clean());
 });
 
@@ -160,3 +159,7 @@ gulp.task('default', function (cb) {
 gulp.task('prod', function (cb) {
     return runSequence('clean', ['jshint', 'htmllint', 'bower'], ['vendors', 'uglify', 'htmlmin', 'htmlmin-index', 'copyCssProd', 'copyFonts', 'copyTemplates'], ['bootstrapThemeCssRenameProd', 'bootstrapCssRenameProd'], cb);
 });
+
+gulp.task('test', function(cb) {
+    return runSequence('default', 'runTest', cb);
+})
