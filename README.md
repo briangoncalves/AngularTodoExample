@@ -9,3 +9,4 @@ Simple Angular Project based on AngularTodoMVC to demonstrate the usage of the f
 - if you want, you can run 'gulp prod' to generate a 'production' version with uglify and some minimifications on html
 - for test, you can run 'gulp test', which will generate the dist package based on development and run tests with selenium and mocha
 - allure report can be generated after the 'gulp test' with the command 'allure generate ./allure-results && allure report open'
+
